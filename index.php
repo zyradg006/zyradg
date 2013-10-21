@@ -17,7 +17,6 @@
 </head>
 <body>
 <h1>Register here!</h1>
-<!--Exer3-->
 <p>Fill in your name and email address, then click <strong>Submit</strong> to register.</p>
 <form method="post" action="index.php" enctype="multipart/form-data" >
       Name  <input type="text" name="name" id="name"/></br>
@@ -25,6 +24,19 @@
       <input type="submit" name="submit" value="Submit" />
 </form>
 <?php
+// DB connection info
+$host = "tcp:lcqy05lo5v.database.windows.net,1433";
+$user = "zyradg@lcqy05lo5v";
+$pwd = "Vaselinespf24";
+$db = "tasklist2";
+// Connect to database.
+try {
+    $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
+    $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+}
+catch(Exception $e){
+    die(var_dump($e));
+}
 if(!empty($_POST)) {
 try {
     $name = $_POST['name'];
@@ -44,7 +56,6 @@ catch(Exception $e) {
 }
 echo "<h3>Your're registered!</h3>";
 }
-
 $sql_select = "SELECT * FROM registration_tbl";
 $stmt = $conn->query($sql_select);
 $registrants = $stmt->fetchAll(); 
@@ -63,7 +74,6 @@ if(count($registrants) > 0) {
 } else {
     echo "<h3>No one is currently registered.</h3>";
 }
-
 ?>
 </body>
 </html>
