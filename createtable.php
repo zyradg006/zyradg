@@ -1,7 +1,7 @@
 <?php
 // DB connection info
 $host = "tcp:lcqy05lo5v.database.windows.net,1433";
-$user = "zyradg";
+$user = "zyradg@lcqy05lo5v";
 $pwd = "Vaselinespf24";
 $db = "tasklist2";
 try{
